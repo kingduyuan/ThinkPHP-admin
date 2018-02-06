@@ -1,0 +1,167 @@
+<include file="Layout:header" />
+<!-- 头部导航栏 start : -->
+<div class="navbar">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a id="main-menu-toggle" class="hidden-phone open"><i class="icon-reorder"></i></a>
+            <div class="row-fluid">
+                <a class="brand span2" href="/admin/admin/login.html"><span>个人博客后台管理</span></a>
+            </div>
+            <!-- start: Header Menu -->
+            <div class="nav-no-collapse header-nav">
+                <ul class="nav pull-right">
+                    <!-- start: User Dropdown -->
+                    <li class="dropdown">
+                        <a class="btn account dropdown-toggle" data-toggle="dropdown" href="#">
+                            <div class="avatar"><img src="{$users.face}" alt="Avatar" /></div>
+                            <div class="user">
+                                <span class="hello">欢迎登录!</span>
+                                <span class="name">{$users.name}</span>
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-menu-title"></li>
+                            <li><a href="{:U('admin/login')}#message" class="user-info"><i class="icon-cog"></i> 我的信息 </a></li>
+                            <li><a href="{:U('admin/login')}#info" class="user-password"><i class="icon-cog"></i> 修改密码 </a></li>
+                            <li><a href="{:U('index/logout')}"><i class="icon-off"></i> 退出 </a></li>
+                        </ul>
+                    </li>
+                    <!-- end: User Dropdown -->
+                </ul>
+            </div>
+            <!-- end: Header Menu -->
+        </div>
+    </div>
+</div>
+<!-- 头部导航栏 end :  -->
+<div class="container-fluid-full">
+    <div class="row-fluid">
+        <!-- start: 主要导航栏 -->
+        <div id="sidebar-left" class="span2">
+            导航栏搜索
+            <div class="row-fluid actions">
+                <input type="text" class="search span12 menu-search" placeholder="搜索栏目" />
+            </div>
+
+            <div class="nav-collapse sidebar-nav">
+                <ul class="nav nav-tabs nav-stacked main-menu">
+                    <foreach name="menus" item="value">
+                    <li>
+                        <a <if condition="(0 lt count($value['child']))">class="dropmenu" href="#" <else /> href="{:U($value['url'])}"</if> >
+                            <i class="{$value.icons}"></i>
+                            <span class="hidden-tablet"> {$value.menu_name}</span>
+                            <if condition="(0 lt count($value['child']))" >
+                            <span class="label">{$value.child|count=###}</span>
+                            </if>
+                        </a>
+                        <if condition="(0 lt count($value['child']))" >
+                        <ul>
+                            <foreach name="value.child" item="val">
+                            <li>
+                                <a class="submenu" href="{:U($val['url'])}">
+                                    <i class="{$val.icons}"></i>
+                                    <span class="hidden-tablet">{$val.menu_name}</span>
+                                </a>
+                            </li>
+                            </foreach>
+                        </ul>
+                        </if>
+                    </li>
+                    </foreach>
+                </ul>
+            </div>
+        </div>
+        <!-- end: 主要导航栏 -->
+        <!-- start: 主要内容 -->
+        <div id="content" class="span10">
+            <div class="row-fluid">
+                <div class="box span12">
+                    {__CONTENT__}
+                </div>
+            </div>
+        </div>
+        <!-- end: 主要内容 -->
+    </div>
+    <div class="clearfix"></div>
+    <footer>
+        <p>
+            <span class="ms-footer">Copyright &copy; 2016.Company name All rights reserved. <a href="#">我的个人博客后台管理</a></span>
+        </p>
+    </footer>
+</div>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery.ui.touch-punch.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/modernizr.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/bootstrap.min.js"></script>
+    <!--<script type="text/javascript" src="__PUBLIC__/js/jquery.cookie.js"></script>-->
+    <script type="text/javascript" src='__PUBLIC__/js/fullcalendar.min.js'></script>
+    <script type="text/javascript" src='__PUBLIC__/js/jquery.dataTables.min.js'></script>
+    <!--文件上传-->
+    <script type="text/javascript" src="__PUBLIC__/js/plupload/plupload.full.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/plupload/zh_CN.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/jcrop/jquery.Jcrop.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/excanvas.js"></script>
+    <!--<script type="text/javascript" src="__PUBLIC__/js/jquery.flot.js"></script>-->
+    <!--<script type="text/javascript" src="__PUBLIC__/js/jquery.flot.pie.js"></script>-->
+    <!--<script type="text/javascript" src="__PUBLIC__/js/jquery.flot.stack.js"></script>-->
+    <!--<script type="text/javascript" src="__PUBLIC__/js/jquery.flot.resize.min.js"></script>-->
+    <!--<script type="text/javascript" src="__PUBLIC__/js/jquery.flot.time.js"></script>-->
+    <!--<script type="text/javascript" src="__PUBLIC__/js/colResizable.min.js"></script>-->
+    <script type="text/javascript" src="__PUBLIC__/js/jquery.chosen.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery.uniform.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery.cleditor.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery.noty.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery.elfinder.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery.raty.min.js"></script>
+    <!--<script type="text/javascript" src="__PUBLIC__/js/jquery.iphone.toggle.js"></script>-->
+    <!--<script type="text/javascript" src="__PUBLIC__/js/jquery.gritter.min.js"></script>-->
+    <script type="text/javascript" src="__PUBLIC__/js/jquery.imagesloaded.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery.masonry.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery.knob.modified.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery.sparkline.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/counter.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/raphael.2.1.0.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/justgage.1.0.1.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery.autosize.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/retina.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery.placeholder.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/wizard.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/core.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/charts.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/custom.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery.datetimepicker.full.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/datepicker.zh-CN.js"></script>
+	<script type="text/javascript" src='__PUBLIC__/js/dataTables.colResize.js'></script>
+    <script type="text/javascript" >
+    $(function(){
+        // 导航栏搜索
+        $('.menu-search').bind('blur keyup', function(){
+            var v = $(this).val();
+            if (v) {
+                $('ul.main-menu a').hide();
+                $('ul.main-menu a:contains(\'' + v + '\')').show();
+            } else {
+                $('ul.main-menu a').show();
+            }
+        });
+
+        // 隐藏内容
+        $('.btn-close:first').click(function () {
+            $('.main-menu li.active a').append('<span class="label">显示</span>').addClass('isShow').bind('click', function (e) {
+                e.preventDefault();
+                $('.row-fluid .box:first').fadeIn();
+                $('.box:gt(0)').fadeOut();
+                $(this).unbind('click').find('span:last').remove();
+                return false;
+            });
+        });
+    })
+</script>
+</body>
+</html>

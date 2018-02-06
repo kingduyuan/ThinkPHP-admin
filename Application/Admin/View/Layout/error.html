@@ -1,0 +1,79 @@
+<div class="box-header">
+    <h2><i class="icon-bullhorn"></i> 温馨提醒 </h2>
+    <div class="box-icon">
+        <a href="#" class="btn-setting"><i class="icon-wrench"></i></a>
+        <a href="#" class="btn-minimize"><i class="icon-chevron-up"></i></a>
+        <a href="#" class="btn-close"><i class="icon-remove"></i></a>
+    </div>
+</div>
+<div class="box-content alerts">
+    <div class="error-container">
+        <div class="well">
+            <h1 class="grey lighter smaller">
+                <span class="blue bigger-125">
+                    <i class="ace-icon fa fa-sitemap"></i>
+                    {$title}：
+                </span>
+                {$content}
+            </h1>
+            <hr />
+            <div class="alert <if condition="$type neq 1">alert-error<else/>alert-success</if>">
+                {$content}
+            </div>
+            <if condition="$auto eq true">
+                <div class="alert alert-block">
+                    系统正在为你执行跳转,请稍候...<strong id="auto_time">3</strong>
+                </div>
+                <script type="application/javascript">
+                    $(function(){
+                        var
+                                v   = 3,
+                                url = "{$url}",
+                                m   = setInterval(function(){
+                                    v --;
+                                    $('#auto_time').html(v)
+                                    if (v == 0) {
+                                        clearInterval(m);
+                                        if (url != '')
+                                            window.location.href = url;
+                                        else
+                                            window.history.go(-1);
+                                    }
+                                }, 1000);
+                    })
+                </script>
+            </if>
+            <if condition="$type neq 1">
+            <h3 class="lighter smaller"></h3>
+            <div>
+                <div class="space"></div>
+                <h4 class="smaller">尝试下列方法：</h4>
+                <ul class="me-ul">
+                    <li>
+                        <i class="icon-hand-right blue"></i>　告诉管理员添加权限操作
+                    </li>
+                    <li>
+                        <i class="icon-hand-right blue"></i>　阅读常见问题
+                    </li>
+                    <li>
+                        <i class="icon-hand-right blue"></i>　告诉我们
+                    </li>
+                </ul>
+            </div>
+            </if>
+            <hr />
+            <div class="space"></div>
+            <div class="center-block text-center">
+                <a href="javascript:history.back()" class="btn btn-grey">
+                    <i class="ace-icon fa fa-arrow-left"></i>
+                    回去
+                </a>
+
+                <a href="/admin/admin/login" class="btn btn-primary">
+                    <i class="ace-icon fa fa-desktop"></i>
+                    欢迎页
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+<div class="box-header">
+    <h2><i class="icon-flag"></i> 角色分配权限信息 </h2>
+    <div class="box-icon">
+        <a href="#" class="btn-minimize"><i class="icon-chevron-up"></i></a>
+    </div>
+</div>
+<div class="box-content">
+    <div class="alert alert-error">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong> 温馨提醒 ! </strong> 管理员可以看见的导航栏目对应的权限是 (xxx 显示) 哦！
+    </div>
+
+    <form class="form-horizontal allocation" action="{:U('/admin/role/create')}" method="POST">
+        <fieldset>
+            <div class="control-group">
+                <label class="control-label">角色名称</label>
+                <div class="controls">
+                    <input type="text" name="name" value="{$role['name']}" readonly="readonly" />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">角色说明</label>
+                <div class="controls">
+                    <input type="text" name="desc" value="{$role['desc']}" required="true" rangelength="[2, 50]" />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">拥有权限</label>
+                <div class="controls">
+                    <foreach name="powers" item="value" key="key">
+                        <label class="checkbox inline">
+                            <input type="checkbox" name="powers[]" <if condition="in_array($key, $roleItems)">checked="checked"</if> value="{$key}" /> {$value}({$key})
+                        </label>
+                    </foreach>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary"> 保存提交 </button>
+                <button type="reset" class="btn"> 重置 </button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+<script type="text/javascript">
+    $(function(){
+        $('.main-menu a[href=\\/admin\\/role\\/index\\.html]').parent('li').addClass('active').parent('ul').show();
+        $('.allocation').submit(function(){
+            return $(this).validate(validatorError).form();
+        })
+    })
+</script>
